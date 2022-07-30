@@ -103,7 +103,7 @@
 	
 	<!-- 게시판 메인 페이지 영역 시작 -->
 	<div class="container">
-		<div class="row">
+		<div class="row" style="height:450px;">
 			<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
 				<thead>
 					<tr>
@@ -139,23 +139,38 @@
 					%>
 				</tbody>
 			</table>
-			
+		</div>
+		<div class="row">
 			<!-- 페이징 처리 영역 -->
 			<%
+				if( bbsDAO.nextPage(pageNumber +1)){
+			%>
+				<a href = "bbs.jsp?pageNumber=<%=pageNumber + 1 %>" class = "btn btn-success btn-arraw-left"><</a>
+				
+			<%
+				}else {
+
+			%>
+				<div class = "btn btn-success btn-arraw-left" style="background-color:#ddddddbd; border: 1px solid #ddddddbd"><</div>
+			<%
+				}
+				
 				if(pageNumber != 1){
 			%>
-				<a href = "bbs.jsp?pageNumber=<%=pageNumber +1 %>" class = "btn btn-success btn-arraw-left">다음</a>
-			<%
-				}if(bbsDAO.nextPage(pageNumber +1)){
-			%>
 				
-				<a href ="bbs.jsp?pageNumber=<%=pageNumber -1 %>" class="btn btn-success btn-arraw-left">이전</a>
+				<a href = "bbs.jsp?pageNumber=<%=pageNumber - 1 %>" class= "btn btn-success btn-arraw-left">></a>
 			
+			<%
+				}else {
+
+			%>
+				<div class = "btn btn-success btn-arraw-left" style="background-color:#ddddddbd; border: 1px solid #ddddddbd">></div>
 			<%
 				}
 			%>
 			<!-- 글쓰기 버튼 생성 -->
 			<a href="write.jsp" class="btn btn-primary pull-right">글쓰기</a>
+		
 		</div>
 		
 	

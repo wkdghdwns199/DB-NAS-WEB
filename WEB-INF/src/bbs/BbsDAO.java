@@ -107,11 +107,15 @@ public class BbsDAO {
 	
 	//페이징 처리 메소드
 	public boolean nextPage(int pageNumber) {
+		String pageSetCalsql = "select count(*) from bbs where bbsAvailable=0";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		rs = pstmt.executeQuery();
+		int deletedContents= rs.getInt(1);
 		String sql = "select * from bbs where bbsID < ? and bbsAvailable = 1";
 		
 		try {
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, getNext() - (pageNumber -1) *10);
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, getNext() - deletedContents - (pageNumber -1) *10);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				return true;
