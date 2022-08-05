@@ -9,7 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <!-- 화면 최적화 -->
-<meta name="viewport" content="width-device-width", initial-scale="1">
+<meta name="viewport" content="width-device-width, initial-scale=1">
 
 <!-- 루트 폴더에 부트스트랩을 참조하는 링크 -->
 <link rel="stylesheet" href="css/bootstrap.css">
@@ -100,9 +100,50 @@
 		
 	</nav>
 	
-	
+	<div class="container">
+<<<<<<< Updated upstream
+=======
+		<div class="row">
+			<!-- 페이징 처리 영역 -->
+			<%
+				BbsDAO bbsDAO =new BbsDAO(); // 인스턴스 생성
+				ArrayList<Bbs> list = bbsDAO.getList(pageNumber);
+				
+					if( bbsDAO.nextPage(pageNumber +1)){
+			%>
+				<a href = "bbs.jsp?pageNumber=<%=pageNumber + 1 %>" class = "btn btn-success btn-arraw-left"><</a>
+				
+			<%
+				}else {
+
+			%>
+				<div class = "btn btn-success btn-arraw-left" style="background-color:#ddddddbd; border: 1px solid #ddddddbd"><</div>
+			<%
+				}
+				
+				if(pageNumber != 1){
+			%>
+				
+				<a href = "bbs.jsp?pageNumber=<%=pageNumber - 1 %>" class= "btn btn-success btn-arraw-left">></a>
+			
+			<%
+				}else {
+
+			%>
+				<div class = "btn btn-success btn-arraw-left" style="background-color:#ddddddbd; border: 1px solid #ddddddbd">></div>
+			<%
+				}
+			%>
+			<!-- 글쓰기 버튼 생성 -->
+			<a href="write.jsp" class="btn btn-primary pull-right">글쓰기</a>
+				
+		</div>
+		<br><br>
+
+	</div>
 	<!-- 게시판 메인 페이지 영역 시작 -->
 	<div class="container">
+>>>>>>> Stashed changes
 		<div class="row" style="height:450px;">
 			<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
 				<thead>
@@ -121,8 +162,7 @@
 						<td>2020-07-13</td> -->
 						
 						<%
-							BbsDAO bbsDAO =new BbsDAO(); // 인스턴스 생성
-							ArrayList<Bbs> list = bbsDAO.getList(pageNumber);
+							
 							
 							for (int i=0; i<list.size(); i++){
 				
@@ -139,6 +179,7 @@
 					%>
 				</tbody>
 			</table>
+<<<<<<< Updated upstream
 		</div>
 		<div class="row">
 			<!-- 페이징 처리 영역 -->
@@ -171,7 +212,10 @@
 			<!-- 글쓰기 버튼 생성 -->
 			<a href="write.jsp" class="btn btn-primary pull-right">글쓰기</a>
 		
+=======
+>>>>>>> Stashed changes
 		</div>
+		
 		
 	
 	</div>
